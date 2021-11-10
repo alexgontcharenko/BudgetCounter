@@ -1,8 +1,8 @@
 //
 //  Category+CoreDataProperties.swift
-//  BudgetCounter
+//  
 //
-//  Created by Steew on 07.11.2021.
+//  Created by Steew on 10.11.2021.
 //
 //
 
@@ -16,11 +16,7 @@ extension Category {
         return NSFetchRequest<Category>(entityName: "Category")
     }
 
-    @NSManaged public var name: String?
     @NSManaged public var details: String?
-
-}
-
-extension Category : Identifiable {
+    @NSManaged public var name: String?
 
 }

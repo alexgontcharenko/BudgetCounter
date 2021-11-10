@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,17 +14,19 @@
 		03C00AF12738465F0058811F /* BudgetCounter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03C00AEF2738465F0058811F /* BudgetCounter.xcdatamodeld */; };
 		03C00AF3273846670058811F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03C00AF2273846670058811F /* Assets.xcassets */; };
 		03C00AF6273846670058811F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C00AF4273846670058811F /* LaunchScreen.storyboard */; };
-		03C00B0627384A600058811F /* Account+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C00B0027384A600058811F /* Account+CoreDataClass.swift */; };
-		03C00B0727384A600058811F /* Account+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C00B0127384A600058811F /* Account+CoreDataProperties.swift */; };
-		03C00B0827384A600058811F /* Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C00B0227384A600058811F /* Transaction+CoreDataClass.swift */; };
-		03C00B0927384A600058811F /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C00B0327384A600058811F /* Transaction+CoreDataProperties.swift */; };
-		03C00B0A27384A600058811F /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C00B0427384A600058811F /* Category+CoreDataClass.swift */; };
-		03C00B0B27384A600058811F /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C00B0527384A600058811F /* Category+CoreDataProperties.swift */; };
 		03C00B1A27385BB80058811F /* AddTransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C00B1927385BB80058811F /* AddTransactionVC.swift */; };
 		03C00B2227385DE20058811F /* StatisticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C00B2127385DE20058811F /* StatisticsVC.swift */; };
 		03C00B252738667F0058811F /* StatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C00B242738667F0058811F /* StatCell.swift */; };
 		03C00B2A27386B0D0058811F /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C00B2927386B0D0058811F /* MainCell.swift */; };
 		03C08D1F273BE230005C29FE /* TextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C08D1E273BE230005C29FE /* TextField+Extension.swift */; };
+		03C08D2F273C3046005C29FE /* AddAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C08D2E273C3046005C29FE /* AddAccountVC.swift */; };
+		03C08D38273C4652005C29FE /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C08D32273C4652005C29FE /* Category+CoreDataProperties.swift */; };
+		03C08D39273C4652005C29FE /* Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C08D33273C4652005C29FE /* Transaction+CoreDataClass.swift */; };
+		03C08D3A273C4652005C29FE /* Account+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C08D34273C4652005C29FE /* Account+CoreDataClass.swift */; };
+		03C08D3B273C4652005C29FE /* Account+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C08D35273C4652005C29FE /* Account+CoreDataProperties.swift */; };
+		03C08D3C273C4652005C29FE /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C08D36273C4652005C29FE /* Transaction+CoreDataProperties.swift */; };
+		03C08D3D273C4652005C29FE /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C08D37273C4652005C29FE /* Category+CoreDataClass.swift */; };
+		03C08D41273C65BD005C29FE /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C08D40273C65BD005C29FE /* DataManager.swift */; };
 		3FEFAD78FEDCF1DF0A833923 /* Pods_BudgetCounter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 372666BB93D2823A8969D111 /* Pods_BudgetCounter.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,17 +40,19 @@
 		03C00AF2273846670058811F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03C00AF5273846670058811F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03C00AF7273846670058811F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03C00B0027384A600058811F /* Account+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Account+CoreDataClass.swift"; sourceTree = "<group>"; };
-		03C00B0127384A600058811F /* Account+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Account+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		03C00B0227384A600058811F /* Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
-		03C00B0327384A600058811F /* Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		03C00B0427384A600058811F /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
-		03C00B0527384A600058811F /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		03C00B1927385BB80058811F /* AddTransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionVC.swift; sourceTree = "<group>"; };
 		03C00B2127385DE20058811F /* StatisticsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsVC.swift; sourceTree = "<group>"; };
 		03C00B242738667F0058811F /* StatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCell.swift; sourceTree = "<group>"; };
 		03C00B2927386B0D0058811F /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 		03C08D1E273BE230005C29FE /* TextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Extension.swift"; sourceTree = "<group>"; };
+		03C08D2E273C3046005C29FE /* AddAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountVC.swift; sourceTree = "<group>"; };
+		03C08D32273C4652005C29FE /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		03C08D33273C4652005C29FE /* Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
+		03C08D34273C4652005C29FE /* Account+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+CoreDataClass.swift"; sourceTree = "<group>"; };
+		03C08D35273C4652005C29FE /* Account+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		03C08D36273C4652005C29FE /* Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		03C08D37273C4652005C29FE /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
+		03C08D40273C65BD005C29FE /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		372666BB93D2823A8969D111 /* Pods_BudgetCounter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BudgetCounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95D0A41A2C0DD9B398DEA552 /* Pods-BudgetCounter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BudgetCounter.release.xcconfig"; path = "Target Support Files/Pods-BudgetCounter/Pods-BudgetCounter.release.xcconfig"; sourceTree = "<group>"; };
 		F180DF64F0F6B93D44D3B851 /* Pods-BudgetCounter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BudgetCounter.debug.xcconfig"; path = "Target Support Files/Pods-BudgetCounter/Pods-BudgetCounter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +73,7 @@
 		03C00ADA2738465F0058811F = {
 			isa = PBXGroup;
 			children = (
+				03C08D3F273C65A5005C29FE /* Managers */,
 				03C08D1D273BE21A005C29FE /* Extensions */,
 				03C00B0D27384A760058811F /* Models */,
 				03C00AE52738465F0058811F /* BudgetCounter */,
@@ -102,12 +107,12 @@
 		03C00B0D27384A760058811F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				03C00B0027384A600058811F /* Account+CoreDataClass.swift */,
-				03C00B0127384A600058811F /* Account+CoreDataProperties.swift */,
-				03C00B0227384A600058811F /* Transaction+CoreDataClass.swift */,
-				03C00B0327384A600058811F /* Transaction+CoreDataProperties.swift */,
-				03C00B0427384A600058811F /* Category+CoreDataClass.swift */,
-				03C00B0527384A600058811F /* Category+CoreDataProperties.swift */,
+				03C08D37273C4652005C29FE /* Category+CoreDataClass.swift */,
+				03C08D32273C4652005C29FE /* Category+CoreDataProperties.swift */,
+				03C08D33273C4652005C29FE /* Transaction+CoreDataClass.swift */,
+				03C08D36273C4652005C29FE /* Transaction+CoreDataProperties.swift */,
+				03C08D34273C4652005C29FE /* Account+CoreDataClass.swift */,
+				03C08D35273C4652005C29FE /* Account+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 		03C00B14273853070058811F /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				03C08D2D273C2FFA005C29FE /* AddAccount */,
 				03C00B1C27385D7F0058811F /* Main */,
 				03C00B1D27385D880058811F /* AddTransaction */,
 				03C00B1F27385DA00058811F /* Statistics */,
@@ -166,13 +172,28 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		03C08D2D273C2FFA005C29FE /* AddAccount */ = {
+			isa = PBXGroup;
+			children = (
+				03C08D2E273C3046005C29FE /* AddAccountVC.swift */,
+			);
+			path = AddAccount;
+			sourceTree = "<group>";
+		};
+		03C08D3F273C65A5005C29FE /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				03C08D40273C65BD005C29FE /* DataManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		0AB28006F57EAB18B02CD990 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				F180DF64F0F6B93D44D3B851 /* Pods-BudgetCounter.debug.xcconfig */,
 				95D0A41A2C0DD9B398DEA552 /* Pods-BudgetCounter.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -298,20 +319,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03C00B0927384A600058811F /* Transaction+CoreDataProperties.swift in Sources */,
-				03C00B0727384A600058811F /* Account+CoreDataProperties.swift in Sources */,
+				03C08D3B273C4652005C29FE /* Account+CoreDataProperties.swift in Sources */,
 				03C00AEB2738465F0058811F /* MainViewController.swift in Sources */,
-				03C00B0627384A600058811F /* Account+CoreDataClass.swift in Sources */,
-				03C00B0827384A600058811F /* Transaction+CoreDataClass.swift in Sources */,
 				03C00B2227385DE20058811F /* StatisticsVC.swift in Sources */,
 				03C00B252738667F0058811F /* StatCell.swift in Sources */,
 				03C00AF12738465F0058811F /* BudgetCounter.xcdatamodeld in Sources */,
+				03C08D3C273C4652005C29FE /* Transaction+CoreDataProperties.swift in Sources */,
+				03C08D39273C4652005C29FE /* Transaction+CoreDataClass.swift in Sources */,
 				03C00B2A27386B0D0058811F /* MainCell.swift in Sources */,
 				03C08D1F273BE230005C29FE /* TextField+Extension.swift in Sources */,
+				03C08D41273C65BD005C29FE /* DataManager.swift in Sources */,
+				03C08D3D273C4652005C29FE /* Category+CoreDataClass.swift in Sources */,
+				03C08D38273C4652005C29FE /* Category+CoreDataProperties.swift in Sources */,
 				03C00AE72738465F0058811F /* AppDelegate.swift in Sources */,
-				03C00B0B27384A600058811F /* Category+CoreDataProperties.swift in Sources */,
+				03C08D3A273C4652005C29FE /* Account+CoreDataClass.swift in Sources */,
+				03C08D2F273C3046005C29FE /* AddAccountVC.swift in Sources */,
 				03C00B1A27385BB80058811F /* AddTransactionVC.swift in Sources */,
-				03C00B0A27384A600058811F /* Category+CoreDataClass.swift in Sources */,
 				03C00AE92738465F0058811F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,8 +1,8 @@
 //
 //  Account+CoreDataProperties.swift
-//  BudgetCounter
+//  
 //
-//  Created by Steew on 07.11.2021.
+//  Created by Steew on 10.11.2021.
 //
 //
 
@@ -18,10 +18,23 @@ extension Account {
 
     @NSManaged public var currency: String?
     @NSManaged public var name: String?
+    @NSManaged public var transactions: NSSet?
 
 }
 
-extension Account : Identifiable {
+// MARK: Generated accessors for transactions
+extension Account {
+
+    @objc(addTransactionsObject:)
+    @NSManaged public func addToTransactions(_ value: Transaction)
+
+    @objc(removeTransactionsObject:)
+    @NSManaged public func removeFromTransactions(_ value: Transaction)
+
+    @objc(addTransactions:)
+    @NSManaged public func addToTransactions(_ values: NSSet)
+
+    @objc(removeTransactions:)
+    @NSManaged public func removeFromTransactions(_ values: NSSet)
 
 }
-

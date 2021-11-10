@@ -60,6 +60,21 @@
             </objects>
             <point key="canvasLocation" x="1374" y="-22"/>
         </scene>
+        <!--Add AccountVC-->
+        <scene sceneID="4iQ-2N-PB6">
+            <objects>
+                <viewController storyboardIdentifier="AddAccountVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cWG-Nv-PZY" customClass="AddAccountVC" customModule="BudgetCounter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AFf-gn-aPs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="SdE-3O-W1M"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kW1-bc-AmD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2229" y="-22"/>
+        </scene>
         <!--Main View Controller-->
         <scene sceneID="7F5-MP-7Ne">
             <objects>

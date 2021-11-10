@@ -1,8 +1,8 @@
 //
 //  Transaction+CoreDataProperties.swift
-//  BudgetCounter
+//  
 //
-//  Created by Steew on 07.11.2021.
+//  Created by Steew on 10.11.2021.
 //
 //
 
@@ -16,15 +16,11 @@ extension Transaction {
         return NSFetchRequest<Transaction>(entityName: "Transaction")
     }
 
-    @NSManaged public var date: Int16
     @NSManaged public var amount: Int16
-    @NSManaged public var recipient: String?
     @NSManaged public var category: String?
+    @NSManaged public var date: Int16
     @NSManaged public var note: String?
+    @NSManaged public var recipient: String?
     @NSManaged public var account: Account?
-
-}
-
-extension Transaction : Identifiable {
 
 }

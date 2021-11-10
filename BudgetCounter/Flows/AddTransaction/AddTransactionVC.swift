@@ -10,6 +10,7 @@ import SearchTextField
 import CoreData
 
 class AddTransactionVC: UIViewController {
+    
     private var appDelegate: AppDelegate =
       UIApplication.shared.delegate as! AppDelegate
     private var segmentedTransaction: UISegmentedControl!
@@ -19,22 +20,22 @@ class AddTransactionVC: UIViewController {
     private var picker = UIPickerView()
     private var toolBar: UIToolbar!
     private var accounts: [Account]!
+    private var categories: [Category]!
     
     private let cornerRadius: CGFloat = 5
     private let borderColor = CGColor(gray: 0, alpha: 0.5)
     private let borderWidth: CGFloat = 1.5
-    
-    private let secArray = ["Bank", "Card", "Cash"]
+    private let incomeArray: [String] = ["Wages", "Dividends"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getData()
         setPickerView()
         setSegmentedTransaction()
         setAccountTextField()
         setCategoryTextField()
         setAmountTextField()
         setNavigationBar()
-        getData()
     }
     
     func setSegmentedTransaction() {
@@ -47,6 +48,20 @@ class AddTransactionVC: UIViewController {
         let elementHeight:CGFloat = 30
         segmentedTransaction.frame = CGRect(x: xPosition, y: yPosition, width: elementWidth, height: elementHeight)
         view.addSubview(segmentedTransaction)
+        segmentedTransaction.addTarget(self, action: #selector(segmentedTransactionChanged), for: .valueChanged)
+    }
+    
+    @objc func segmentedTransactionChanged() {
+        switch segmentedTransaction.selectedSegmentIndex {
+        case 0:
+            categoryTextField.filterStrings(incomeArray)
+            amountTextField.text = ""
+        case 1:
+            categoryTextField.filterStrings(categories.compactMap( {$0.name} ))
+            amountTextField.text = "-"
+        default:
+            break
+        }
     }
     
     func setAccountTextField() {
@@ -73,7 +88,7 @@ class AddTransactionVC: UIViewController {
         categoryTextField.layer.cornerRadius = cornerRadius
         categoryTextField.placeholder = "Select category"
         categoryTextField.setLeftPaddingPoints(10)
-        categoryTextField.filterStrings(secArray)
+        categoryTextField.filterStrings(incomeArray)
         view.addSubview(categoryTextField)
         categoryTextField.translatesAutoresizingMaskIntoConstraints = false
         categoryTextField.topAnchor.constraint(equalTo: accountTextField.bottomAnchor, constant: 20).isActive = true
@@ -89,6 +104,7 @@ class AddTransactionVC: UIViewController {
         amountTextField.layer.cornerRadius = cornerRadius
         amountTextField.placeholder = "Enter amount"
         amountTextField.setLeftPaddingPoints(10)
+        amountTextField.keyboardType = .decimalPad
         view.addSubview(amountTextField)
         amountTextField.translatesAutoresizingMaskIntoConstraints = false
         amountTextField.topAnchor.constraint(equalTo: categoryTextField.bottomAnchor, constant: 20).isActive = true
@@ -109,7 +125,7 @@ class AddTransactionVC: UIViewController {
         toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.default
         toolBar.isTranslucent = true
-        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar.tintColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
         toolBar.sizeToFit()
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(self.donePicker))
         toolBar.setItems([doneButton], animated: false)
@@ -120,25 +136,41 @@ class AddTransactionVC: UIViewController {
         accountTextField.resignFirstResponder()
     }
     
-    @objc func saveTransaction() {
-        
-        
-        navigationController?.popViewController(animated: true)
-    }
     
     @objc func cancelTransaction() {
         navigationController?.popViewController(animated: true)
     }
     
-//   MARK: Core Data
+//   MARK: - Core Data
     
     private func getData() {
-      accounts = try? appDelegate.persistentContainer.viewContext.fetch(Account.fetchRequest()) as? [Account]
+        accounts = try? appDelegate.persistentContainer.viewContext.fetch(Account.fetchRequest()) as? [Account]
+        
+        categories = try? appDelegate.persistentContainer.viewContext.fetch(Category.fetchRequest()) as? [Category]
+    }
+    
+    @objc func saveTransaction() {
+        let transaction = Transaction(
+            entity: Transaction.entity(), insertInto: appDelegate.persistentContainer.viewContext
+        )
+        
+        let fetchRequest: NSFetchRequest<Account> = Account.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name LIKE %@", "\(accountTextField.text!)")
+        guard let accounts = try? appDelegate.persistentContainer.viewContext.fetch(fetchRequest)
+        else { return }
+        
+        accounts[0].addToTransactions(transaction)
+        transaction.amount = Int16(amountTextField.text!) ?? 0
+        transaction.account = accounts[0]
+        transaction.category = categoryTextField.text!
+        appDelegate.saveContext()
+        
+        navigationController?.popViewController(animated: true)
     }
     
 }
 
-//   MARK: Extension
+//   MARK: - Extension
 
 extension AddTransactionVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
