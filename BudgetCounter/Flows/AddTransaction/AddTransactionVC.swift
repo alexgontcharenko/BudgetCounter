@@ -163,6 +163,14 @@ class AddTransactionVC: UIViewController {
         transaction.amount = Int16(amountTextField.text!) ?? 0
         transaction.account = accounts[0]
         transaction.category = categoryTextField.text!
+        
+        let date = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        let minute = calendar.component(.minute, from: date)
+        let day = date.weekdayName
+        
+        transaction.date = day + String(format: " %d:%02d", hour, minute)
         appDelegate.saveContext()
         
         navigationController?.popViewController(animated: true)

@@ -2,7 +2,7 @@
 //  Transaction+CoreDataProperties.swift
 //  
 //
-//  Created by Steew on 10.11.2021.
+//  Created by Steew on 18.11.2021.
 //
 //
 
@@ -18,7 +18,7 @@ extension Transaction {
 
     @NSManaged public var amount: Int16
     @NSManaged public var category: String?
-    @NSManaged public var date: Int16
+    @NSManaged public var date: String?
     @NSManaged public var note: String?
     @NSManaged public var recipient: String?
     @NSManaged public var account: Account?

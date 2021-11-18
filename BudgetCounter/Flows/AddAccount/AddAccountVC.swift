@@ -15,6 +15,7 @@ class AddAccountVC: UIViewController {
     private var addAccTextField: UITextField!
     private var addCatTextField: UITextField!
     private var addAccButton: UIButton!
+    private var deleteAccButton: UIButton!
     private var addCatButton: UIButton!
     private var finishButton: UIButton!
     
@@ -26,6 +27,7 @@ class AddAccountVC: UIViewController {
         super.viewDidLoad()
         setAccTextField()
         setAccButton()
+        setDeleteAccButton()
         setCatTextField()
         setCatButton()
         setFinishButton()
@@ -54,10 +56,24 @@ class AddAccountVC: UIViewController {
         view.addSubview(addAccButton)
         addAccButton.translatesAutoresizingMaskIntoConstraints = false
         addAccButton.topAnchor.constraint(equalTo: addAccTextField.bottomAnchor, constant: 20).isActive = true
-        addAccButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        addAccButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: -35).isActive = true
         addAccButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         addAccButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         addAccButton.addTarget(self, action: #selector(addAccButtonClicked), for: .touchUpInside)
+    }
+    
+    private func setDeleteAccButton() {
+        deleteAccButton = UIButton()
+        deleteAccButton.setTitle("Delete", for: .normal)
+        deleteAccButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+        deleteAccButton.setTitleColor(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), for: .highlighted)
+        view.addSubview(deleteAccButton)
+        deleteAccButton.translatesAutoresizingMaskIntoConstraints = false
+        deleteAccButton.topAnchor.constraint(equalTo: addAccTextField.bottomAnchor, constant: 20).isActive = true
+        deleteAccButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 30).isActive = true
+        deleteAccButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        deleteAccButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        deleteAccButton.addTarget(self, action: #selector(deleteAccButtonClicked), for: .touchUpInside)
     }
     
     private func setCatTextField() {
@@ -117,6 +133,22 @@ class AddAccountVC: UIViewController {
         appDelegate.saveContext()
         
         addAccTextField.resignFirstResponder()
+    }
+    
+    @objc func deleteAccButtonClicked() {
+        let fetchRequest: NSFetchRequest<Account> = Account.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name LIKE %@", "\(addAccTextField.text!)")
+        guard let accounts = try? appDelegate.persistentContainer.viewContext.fetch(fetchRequest)
+        else { return }
+        for account in accounts {
+            account.removeFromTransactions(account.transactions!)
+            appDelegate.persistentContainer.viewContext.delete(account)
+        }
+        appDelegate.saveContext()
+        
+        let alert = UIAlertController(title: "Succes!", message: "Account deleted.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
     
     @objc func addCatButtonClicked() {

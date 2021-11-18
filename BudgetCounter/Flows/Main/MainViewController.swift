@@ -13,7 +13,6 @@ class MainViewController: UIViewController {
     private var appDelegate: AppDelegate =
       UIApplication.shared.delegate as! AppDelegate
     private var accounts: [Account]!
-    private var transactions: [Transaction]!
     private var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -22,11 +21,11 @@ class MainViewController: UIViewController {
         setTableView()
         setTabBar()
         fillUpData()
-        getData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
+        getData()
         tableView.reloadData()
     }
     
@@ -61,10 +60,19 @@ class MainViewController: UIViewController {
         let displayHeight: CGFloat = self.view.frame.height
         
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight))
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MainCell")
+        tableView.register(MainCell.self, forCellReuseIdentifier: "MainCell")
         tableView.dataSource = self
         tableView.delegate = self
-        self.view.addSubview(tableView)
+        view.addSubview(tableView)
+    }
+    
+    private func sum(account: Account) -> Int {
+        var total = 0
+        let transactionArray = account.transactions!.allObjects as! [Transaction]
+        transactionArray.forEach { (transaction) in
+            total += Int(transaction.amount)
+        }
+        return total
     }
     
 // MARK: - Core Data
@@ -82,14 +90,32 @@ class MainViewController: UIViewController {
         accounts = try? appDelegate.persistentContainer.viewContext.fetch(Account.fetchRequest()) as? [Account]
     }
     
+    private func deleteTransaction(transaction: Transaction) {
+        appDelegate.persistentContainer.viewContext.delete(transaction)
+        appDelegate.saveContext()
+    }
+    
 }
 
 // MARK: - Extension
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Num: \(indexPath.row)")
-        print("Value: \(accounts[indexPath.row])")
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            print("Deleted")
+            let account = accounts[indexPath.section]
+            let transactionArray = account.transactions!.allObjects as! [Transaction]
+            let transaction = transactionArray[indexPath.row]
+            account.removeFromTransactions(transaction)
+            deleteTransaction(transaction: transaction)
+            if tableView.dataHasChanged {
+                 tableView.reloadData()
+             }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -100,25 +126,39 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return accounts.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
         view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         
-        let label = UILabel(frame: CGRect(x: 15, y: 0, width: view.frame.width - 15, height: 30))
-        label.font = UIFont.systemFont(ofSize: 20)
+        let label = UILabel(frame: CGRect(x: 15, y: 0, width: view.frame.width / 2, height: 30))
+        label.font = .boldSystemFont(ofSize: 20)
         label.text = accounts[section].name
         view.addSubview(label)
+        
+        let label2 = UILabel(frame: CGRect(x: view.frame.maxX-75, y: 0, width: 70, height: 30))
+        label2.font = UIFont.systemFont(ofSize: 20)
+        label2.textAlignment = .right
+        label2.text = String(sum(account: accounts[section]))
+        view.addSubview(label2)
         return view
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell", for: indexPath as IndexPath)
-        let account = accounts[indexPath.section]
-        let transactionArray = account.transactions!.allObjects as! [Transaction]
-        let transaction = transactionArray[indexPath.row]
-        cell.textLabel?.text = "\(transaction.amount)"
-        
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell", for: indexPath) as? MainCell {
+            let account = accounts[indexPath.section]
+            let transactionArray = account.transactions!.allObjects as! [Transaction]
+            let transaction = transactionArray[indexPath.row]
+            cell.catLabel.text = transaction.category
+            cell.dateLabel.text = transaction.date
+            cell.amountLabel.text = "\(transaction.amount)"
+            
+            return cell
+        }
+        fatalError("could not dequeueReusableCell")
     }
     
     

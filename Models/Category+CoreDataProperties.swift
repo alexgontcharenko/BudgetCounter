@@ -2,7 +2,7 @@
 //  Category+CoreDataProperties.swift
 //  
 //
-//  Created by Steew on 10.11.2021.
+//  Created by Steew on 18.11.2021.
 //
 //
 
